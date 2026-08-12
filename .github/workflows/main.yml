@@ -11,16 +11,15 @@ jobs:
         run: ci/build-app.sh
       - name: Test 
         run: ci/unit-test-app.sh
-      - name: Super-Linter
-        uses: super-linter/super-linter@v8.7.0 
-        env:
-          DEFUALT_BRANCH: main
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          DISABLE_ERRORS: true 
       - name: Upload a Build Artifact # Name of the step
         uses: actions/upload-artifact@v4 # Action to use
         with: # Parameters for the action
             name: code # Name of the artifact to upload. Optional. Default is 'artifact
             path: .  # A file, directory or wildcard pattern that describes what to upload. Required.  
             include-hidden-files: true
-            
+      - name: Super-Linter
+        uses: super-linter/super-linter@v8.7.0 
+        env:
+          DEFUALT_BRANCH: main
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          DISABLE_ERRORS: true 
